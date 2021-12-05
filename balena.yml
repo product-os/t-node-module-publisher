@@ -23,7 +23,6 @@ data:
           data:
             type: object
             required:
-              - fragment
               - $transformer
             properties:
               $transformer:
