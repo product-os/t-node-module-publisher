@@ -27,6 +27,8 @@ data:
             properties:
               $transformer:
                 type: object
+                required:
+                  - backflow
                 properties:
                   backflow:
                     type: array
