@@ -19,12 +19,12 @@ data:
         required:
           - type
           - data
-          - $transformer
         properties:
           data:
             type: object
             required:
               - fragment
+              - $transformer
             properties:
               $transformer:
                 type: object
