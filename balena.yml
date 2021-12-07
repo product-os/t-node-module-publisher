@@ -1,6 +1,6 @@
 # this is "service-source" because we're re-using the same transformer for building different kinds of docker-images
 # in the future that will be simplified
-type: type-product-os-t-service-source@1.0.1
+type: type-product-os-t-service-source@1.1.1
 name: Transformer template # 👈 change this
 version: 0.1.0
 data:
