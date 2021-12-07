@@ -19,7 +19,21 @@ data:
         required:
           - type
           - data
+          - $transformer
         properties:
+          $transformer:
+                type: object
+                properties:
+                  backflow:
+                    type: array
+                    contains:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          const: type-product-os-t-node-module@1.0.7
+                      required:
+                        - type
           type:
             # this runs your transformer on all instances of the same major version of the input type
             pattern: type-product-os-t-node-module-source@0.*
