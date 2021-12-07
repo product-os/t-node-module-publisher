@@ -1,6 +1,6 @@
 type: type-product-os-t-service-source@1.0.1
 name: NPM Publisher
-version: 0.1.5
+version: 0.1.6
 data:
   # The platforms the transformer is built for. Is primarily useful if you do platform-specific
   # things and want maximum performance. (The workers have Qemu and thus can run images for any platform)
@@ -21,22 +21,26 @@ data:
           - data
           - $transformer
         properties:
-          $transformer:
+          data:
             type: object
             required:
-              - backflow
+              - platforms
+              - fragment
+              - $transformer
             properties:
-              backflow:
-                type: array
-                minItems: 1
-                contains:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      const: type-product-os-t-node-module@1.0.7
-                  required:
-                    - type
+              $transformer:
+                type: object
+                properties:
+                  backflow:
+                    type: array
+                    contains:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          const: transformer@1.0.0
+                      required:
+                        - type
           type:
             # this runs your transformer on all instances of the same major version of the input type
             pattern: type-product-os-t-node-module-source@0.*
