@@ -17,7 +17,7 @@ const getEnvOrFail = (envVar: string) => {
 const outputManifestPath = getEnvOrFail('OUTPUT');
 const inputManifestPath = getEnvOrFail('INPUT');
 
-const inputDir = path.dirname(inputManifestPath);
+export const inputDir = path.dirname(inputManifestPath);
 const outDir = path.dirname(outputManifestPath);
 
 let outputs = 0;

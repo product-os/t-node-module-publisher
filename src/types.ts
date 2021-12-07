@@ -1,12 +1,18 @@
 import { core } from '@balena/jellyfish-types';
+import { Contract } from '@balena/jellyfish-types/build/core';
 
 type InData = {
 	// everything in here should be part of the input filter or the input type's schema
-	someProperty: string;
+	packageName: string;
+	$transformer: {
+		backflow: {
+			[key: string]: Contract<any>;
+		};
+	};
 };
 
 export interface OutData {
-	someResultProperty: number;
+	packageName: string
 }
 
 interface TransformerData {
