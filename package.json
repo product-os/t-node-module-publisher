@@ -18,5 +18,6 @@
   "license": "UNLICENSED",
   "versionist": {
     "publishedAt": "2021-12-07T10:46:05.998Z"
-  }
+  },
+  "dependencies": {}
 }

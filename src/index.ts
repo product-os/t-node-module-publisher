@@ -1,5 +1,3 @@
-import * as _ from 'lodash';
-
 import { createOutputDir, readInput, writeOutputs } from './transformer';
 
 console.log('Template Transformer starting');

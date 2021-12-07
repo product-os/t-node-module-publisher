@@ -2,12 +2,8 @@ import { core } from '@balena/jellyfish-types';
 
 type InData = {
 	// everything in here should be part of the input filter or the input type's schema
-	someProperty: string;
+	packageName: string;
 };
-
-export interface OutData {
-	someResultProperty: number;
-}
 
 interface TransformerData {
 	targetPlatform?: string;
@@ -34,7 +30,7 @@ export type Input = {
 
 export type Result = {
 	results: Array<{
-		contract: Omit<core.ContractDefinition<OutData>, 'slug'>;
+		contract: Omit<core.ContractDefinition, 'slug'>;
 		artifactPath?: string; // relative to the results file
 		imagePath?: string; // relative to the results file
 	}>;
