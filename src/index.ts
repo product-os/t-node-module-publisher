@@ -32,6 +32,8 @@ const run = async () => {
 		backflow.id
 	);
 	const filesToTar = await packlist({ path: buildPath })
+	console.log('[PUBLISHER] Going to tar the following files:')
+	console.log(JSON.stringify(filesToTar))
 	const tarballPath = path.join(outputDir, 'bundle.tgz')
 	await tar.create({
 		gzip: true,
