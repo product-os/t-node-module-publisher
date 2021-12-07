@@ -2,7 +2,7 @@ import { core } from '@balena/jellyfish-types';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as YAML from 'yaml';
-import { Input, Result } from './types';
+import { Input, OutData, Result } from './types';
 
 const getEnvOrFail = (envVar: string) => {
 	const env = process.env[envVar];
@@ -17,7 +17,7 @@ const getEnvOrFail = (envVar: string) => {
 const outputManifestPath = getEnvOrFail('OUTPUT');
 const inputManifestPath = getEnvOrFail('INPUT');
 
-const inputDir = path.dirname(inputManifestPath);
+export const inputDir = path.dirname(inputManifestPath);
 const outDir = path.dirname(outputManifestPath);
 
 let outputs = 0;
@@ -42,7 +42,7 @@ export const readInput = async () => {
 
 export const writeOutputs = async (
 	results: Array<{
-		contract: Omit<core.ContractDefinition, 'slug'>;
+		contract: Omit<core.ContractDefinition<OutData>, 'slug'>;
 		artifactType: 'artifact' | 'image' | 'none';
 		path: string;
 	}>,

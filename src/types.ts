@@ -1,9 +1,19 @@
 import { core } from '@balena/jellyfish-types';
+import { Contract } from '@balena/jellyfish-types/build/core';
 
 type InData = {
 	// everything in here should be part of the input filter or the input type's schema
 	packageName: string;
+	$transformer: {
+		backflow: {
+			[key: string]: Contract<any>;
+		};
+	};
 };
+
+export interface OutData {
+	packageName: string
+}
 
 interface TransformerData {
 	targetPlatform?: string;
@@ -30,7 +40,7 @@ export type Input = {
 
 export type Result = {
 	results: Array<{
-		contract: Omit<core.ContractDefinition, 'slug'>;
+		contract: Omit<core.ContractDefinition<OutData>, 'slug'>;
 		artifactPath?: string; // relative to the results file
 		imagePath?: string; // relative to the results file
 	}>;

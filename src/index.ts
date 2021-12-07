@@ -1,4 +1,7 @@
-import { createOutputDir, readInput, writeOutputs } from './transformer';
+import { createOutputDir, inputDir, readInput, writeOutputs } from './transformer';
+import * as packlist from 'npm-packlist';
+import path = require('path');
+import * as tar from 'tar'
 
 console.log('Template Transformer starting');
 
@@ -9,15 +12,44 @@ const run = async () => {
 	const outputDir = await createOutputDir();
 	console.log('output directory:', outputDir);
 
-	// TODO your code goes here. You can
-	// - inspect the input contract
-	// - process the artifact that you can find in the artifactPath
-	//   - note that the input folder is read-only!
-	// - produce some new artifact and place it in `outputDir`
+	// Check to make sure we've got a backflow of the node module
+	const backflow = Object.values(input.contract.data.$transformer.backflow).filter((bfItem) => bfItem.type.startsWith('type-product-os-t-node-module@'))[0];
+
+	if (!backflow) {
+		console.error('[PUBLISHER] Did not find a node module backflow!');
+		console.error(
+			`GOT input: ${JSON.stringify(
+				input.contract.data.$transformer,
+			)}`,
+		);
+		process.exit(1);
+	}
+
+	console.log('[PUBLISHER] Found backflow, Tarballing source')
+	// Get what files should be tar'd
+	const buildPath = path.join(
+		inputDir,
+		backflow.id
+	);
+	const filesToTar = await packlist({ path: buildPath })
+	const tarballPath = path.join(outputDir, 'bundle.tgz')
+	await tar.create({
+		gzip: true,
+		cwd: buildPath,
+		file: tarballPath,
+		prefix: 'package/'
+	}, filesToTar)
+
+	console.log('[PUBLISHER] Successfully tarballed source')
+
+	const version = input.contract.version
+
+	console.log('[PUBLISHER] I would publish version', version)
+
 	const outContract = {
-		type: 'type-my-out-type@1.2.3',
+		type: 'type-product-os-t-node-module@1.0.7',
 		data: {
-			someResultProperty: 1,
+			packageName: input.contract.data.packageName
 		},
 	};
 
