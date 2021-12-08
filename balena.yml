@@ -38,7 +38,7 @@ data:
                       properties:
                         type:
                           type: string
-                          const: transformer@1.0.0
+                          const: type-product-os-t-node-module@1.0.7
                       required:
                         - type
           type:
