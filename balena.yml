@@ -1,4 +1,4 @@
-type: type-product-os-t-service-source@1.0.1
+type: type-product-os-t-service-source@1.1.1
 name: NPM Publisher
 version: 0.1.8
 data:
