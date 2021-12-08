@@ -1,5 +1,4 @@
-# Transformer template
-
+# Node Module Publisher - Reflector
 This is a template repository to copy&paste from, when you create your own Transformer.
 
 To create a new repo from this template [click here](https://github.com/organizations/product-os/repositories/new). (For some reason templates only show up when clicking "new repo" within the same org although they can then be used to create a repo in any org you have access to...)
