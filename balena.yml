@@ -24,7 +24,6 @@ data:
           data:
             type: object
             required:
-              - platforms
               - fragment
             properties:
               $transformer:
