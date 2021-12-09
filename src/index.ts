@@ -30,7 +30,7 @@ const run = async () => {
 
 		console.log('[PUBLISHER] Publishing package to npm...')
 		if (input.contract.version.includes('-pr-')) {
-			console.log('[PUBLISHER] Detected a pre-release version, publishing version', input.contract.version)
+			console.log('[PUBLISHER] This is a pre-release version:', input.contract.version)
 		}
 
 		// Change package.json version
