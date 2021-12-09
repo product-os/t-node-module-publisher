@@ -1,9 +1,8 @@
 import { createOutputDir, inputDir, readInput, writeOutputs } from './transformer';
-import * as packlist from 'npm-packlist';
 import path = require('path');
-import * as tar from 'tar'
-
-console.log('Template Transformer starting');
+import * as zx from 'zx'
+import * as fs from 'fs/promises'
+import { ProcessOutput } from 'zx'
 
 const run = async () => {
 	const input = await readInput();
@@ -25,28 +24,35 @@ const run = async () => {
 		process.exit(1);
 	}
 
-	console.log('[PUBLISHER] Found backflow, Tarballing source')
-	// Get what files should be tar'd
-	const buildPath = path.join(
-		inputDir,
-		backflow.id
-	);
-	const filesToTar = await packlist({ path: buildPath })
-	console.log('[PUBLISHER] Going to tar the following files:')
-	console.log(JSON.stringify(filesToTar))
-	const tarballPath = path.join(outputDir, 'bundle.tgz')
-	await tar.create({
-		gzip: true,
-		cwd: buildPath,
-		file: tarballPath,
-		prefix: 'package/'
-	}, filesToTar)
+	try {
+		const backflowPath = path.join(inputDir, backflow.id)
+		zx.$`cd ${input.artifactPath}`
 
-	console.log('[PUBLISHER] Successfully tarballed source')
+		console.log('[PUBLISHER] Publishing package to npm...')
+		if (input.contract.version.includes('-pr-')) {
+			console.log('[PUBLISHER] Detected a pre-release version, publishing version', input.contract.version)
+		}
 
-	const version = input.contract.version
+		// Change package.json version
+		const pkgJSON = JSON.parse(await fs.readFile(path.join(backflowPath, 'package.json'), { encoding: 'utf-8' }))
+		pkgJSON.version = input.contract.version
+		await fs.writeFile(path.join(backflowPath, 'package.json'), JSON.stringify(pkgJSON, null, 2))
+		console.log('[PUBLISHER] Update package.json version')
 
-	console.log('[PUBLISHER] I would publish version', version)
+		// Change package-lock.json version
+		const pkgLockJSON = JSON.parse(await fs.readFile(path.join(backflowPath, 'package-lock.json'), { encoding: 'utf-8' }))
+		pkgLockJSON.version = input.contract.version
+		await fs.writeFile(path.join(backflowPath, 'package-lock.json'), JSON.stringify(pkgLockJSON, null, 2))
+		console.log('[PUBLISHER] Update package-lock.json version')
+
+		console.log('[PUBLISHER] Publishing version', input.contract.version)
+		zx.$`npm publish`
+	} catch (error) {
+		if (error instanceof ProcessOutput) {
+			console.error('Command returned an error!')
+			console.error(error.toString())
+		}
+	}
 
 	const outContract = {
 		type: 'type-product-os-t-node-module@1.0.7',

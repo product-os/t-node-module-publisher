@@ -1,6 +1,6 @@
 type: type-product-os-t-service-source@1.1.1
 name: NPM Publisher
-version: 0.1.9
+version: 0.2.0
 data:
   # The platforms the transformer is built for. Is primarily useful if you do platform-specific
   # things and want maximum performance. (The workers have Qemu and thus can run images for any platform)
@@ -10,6 +10,10 @@ data:
   fragment:
     type: transformer@1.0.0
     data:
+      encryptedSecrets:
+        buildSecrets:
+          NPM_TOKEN: >-
+            WjdzolKFfsMp0xMxPOEpZizVEFPjKj6nwHzecYlVupHN13JT033Iz6FR4NgUUAkT7W6DHVM+pWPGCQi0hfd/KM5D5bdJLvLYNsTRAC7LUQancYIXy8Zt3BDR6JNeoRVCU8dGjnOX1wflcXgeP/4a9SMuuh5MD3lFzWuW8DYMKDcAchv9hNg5ZXp6ofwsA/QQ589fyrG7FtjozWRL/iBR9nsdh4lvWq3jZvJv1gl215HCMI+oeW6sP9VSBElq/QzH63Nscup+JbsEkTjIzh75s41Jhf0JwKT+1IL/Qcs7jTLwMZ4XEsHArSHD1imZtcj+FvPTebGpH2Tp8zEwVar0jQ==
       targetPlatform: linux/amd64
       # this is a JSON schema (YAML is just a prettier superset of JSON) that describes the shape of contracts your
       # Transformer should run on.
