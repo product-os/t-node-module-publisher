@@ -28,6 +28,11 @@ const run = async () => {
 		const backflowPath = path.join(inputDir, backflow.id)
 		await zx.$`cd ${input.artifactPath}`
 
+		console.log('I FOUN DFILES:')
+		for (const i of await fs.readdir(backflowPath)) {
+			console.log(i)
+		}
+
 		console.log('[PUBLISHER] Publishing package to npm...')
 		if (input.contract.version.includes('-pr-')) {
 			console.log('[PUBLISHER] This is a pre-release version:', input.contract.version)
