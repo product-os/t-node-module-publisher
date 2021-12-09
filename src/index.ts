@@ -47,8 +47,8 @@ const run = async () => {
 
 		console.log('[PUBLISHER] Publishing version', input.contract.version)
 		const out = await zx.$`npm publish`
-		console.log(out.stdout)
-		console.log(out.stderr)
+		console.log('stdout', out.stdout)
+		console.log('stderr', out.stderr)
 		console.log('[PUBLISHER] Successfully published to npm')
 	} catch (error) {
 		if (error instanceof ProcessOutput) {
