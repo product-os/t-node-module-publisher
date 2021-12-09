@@ -28,26 +28,21 @@ const run = async () => {
 		const backflowPath = path.join(inputDir, backflow.id)
 		await zx.$`cd ${input.artifactPath}`
 
-		console.log('I FOUN DFILES:')
-		for (const i of await fs.readdir(backflowPath)) {
-			console.log(i)
-		}
-
 		console.log('[PUBLISHER] Publishing package to npm...')
 		if (input.contract.version.includes('-pr-')) {
 			console.log('[PUBLISHER] This is a pre-release version:', input.contract.version)
 		}
 
 		// Change package.json version
-		const pkgJSON = JSON.parse(await fs.readFile(path.join(backflowPath, 'package.json'), { encoding: 'utf-8' }))
+		const pkgJSON = JSON.parse(await fs.readFile(path.join(input.artifactPath, 'package.json'), { encoding: 'utf-8' }))
 		pkgJSON.version = input.contract.version
-		await fs.writeFile(path.join(backflowPath, 'package.json'), JSON.stringify(pkgJSON, null, 2))
+		await fs.writeFile(path.join(input.artifactPath, 'package.json'), JSON.stringify(pkgJSON, null, 2))
 		console.log('[PUBLISHER] Update package.json version')
 
 		// Change package-lock.json version
-		const pkgLockJSON = JSON.parse(await fs.readFile(path.join(backflowPath, 'package-lock.json'), { encoding: 'utf-8' }))
+		const pkgLockJSON = JSON.parse(await fs.readFile(path.join(input.artifactPath, 'package-lock.json'), { encoding: 'utf-8' }))
 		pkgLockJSON.version = input.contract.version
-		await fs.writeFile(path.join(backflowPath, 'package-lock.json'), JSON.stringify(pkgLockJSON, null, 2))
+		await fs.writeFile(path.join(input.artifactPath, 'package-lock.json'), JSON.stringify(pkgLockJSON, null, 2))
 		console.log('[PUBLISHER] Update package-lock.json version')
 
 		console.log('[PUBLISHER] Publishing version', input.contract.version)
