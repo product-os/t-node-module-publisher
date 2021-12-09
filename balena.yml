@@ -1,6 +1,6 @@
 type: type-product-os-t-service-source@1.1.1
 name: NPM Publisher
-version: 0.2.3
+version: 0.2.4
 data:
   # The platforms the transformer is built for. Is primarily useful if you do platform-specific
   # things and want maximum performance. (The workers have Qemu and thus can run images for any platform)
