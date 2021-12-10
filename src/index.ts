@@ -12,7 +12,7 @@ const run = async () => {
 	console.log('output directory:', outputDir);
 
 	// Check to make sure we've got a backflow of the node module
-	const backflow = Object.values(input.contract.data.$transformer.backflow).filter((bfItem) => bfItem.type.startsWith('type-product-os-t-node-module-source@'))[0];
+	const backflow = Object.values(input.contract.data.$transformer.backflow).filter((bfItem) => bfItem.type.startsWith('type-product-os-t-node-module@'))[0];
 
 	if (!backflow) {
 		console.error('[PUBLISHER] Did not find a node module backflow!');
