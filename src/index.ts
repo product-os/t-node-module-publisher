@@ -26,12 +26,7 @@ const run = async () => {
 
 	try {
 		const backflowPath = path.join(inputDir, backflow.id)
-		await zx.$`cd ${input.artifactPath}`
-
-		console.log('I FOUN DFILES:')
-		for (const i of await fs.readdir(backflowPath)) {
-			console.log(i)
-		}
+		await zx.$`cd ${backflowPath}`
 
 		console.log('[PUBLISHER] Publishing package to npm...')
 		if (input.contract.version.includes('-pr-')) {
@@ -54,6 +49,7 @@ const run = async () => {
 		const out = await zx.$`npm publish`
 		console.log('stdout', out.stdout)
 		console.log('stderr', out.stderr)
+
 		console.log('[PUBLISHER] Successfully published to npm')
 	} catch (error) {
 		if (error instanceof ProcessOutput) {
