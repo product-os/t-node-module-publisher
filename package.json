@@ -1,6 +1,6 @@
 {
   "name": "transformer-template",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "",
   "private": true,
   "main": "build/index.js",
@@ -19,7 +19,7 @@
   },
   "license": "UNLICENSED",
   "versionist": {
-    "publishedAt": "2021-12-09T17:13:10.363Z"
+    "publishedAt": "2021-12-10T09:25:01.595Z"
   },
   "dependencies": {
     "npm-packlist": "^3.0.0",
