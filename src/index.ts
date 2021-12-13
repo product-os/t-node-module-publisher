@@ -27,7 +27,6 @@ const run = async () => {
 	try {
 		const backflowPath = path.join(inputDir, backflow.id)
 		await zx.$`cp -r ${path.join(backflowPath, 'artifact')} /tmp`
-		await zx.$`cd /tmp/artifact`
 
 		console.log('[PUBLISHER] Publishing package to npm...')
 		if (input.contract.version.includes('-pr-')) {
@@ -47,7 +46,7 @@ const run = async () => {
 		console.log('[PUBLISHER] Update package-lock.json version')
 
 		console.log('[PUBLISHER] Publishing version', input.contract.version)
-		const out = await zx.$`npm publish`
+		const out = await zx.$`cd /tmp/artifact && npm publish`
 		console.log('stdout', out.stdout)
 		console.log('stderr', out.stderr)
 
