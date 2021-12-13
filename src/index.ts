@@ -31,7 +31,6 @@ const run = async () => {
 		for (const i of await fs.readdir(backflowPath)) {
 			console.log(i)
 		}
-
 		for (const i of await fs.readdir(path.join(backflowPath, 'artifact'))) {
 			console.log(i)
 		}
