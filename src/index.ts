@@ -27,7 +27,7 @@ const run = async () => {
 	try {
 		const backflowPath = path.join(inputDir, backflow.id)
 		await zx.$`cp -r ${path.join(backflowPath, 'artifact')} /tmp`
-		await zx.$`cd /tmp`
+		await zx.$`cd /tmp/artifact`
 
 		for (const i of await fs.readdir(path.join('/', 'tmp', 'artifact'))) {
 			console.log(i)
