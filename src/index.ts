@@ -29,10 +29,6 @@ const run = async () => {
 		await zx.$`cp -r ${path.join(backflowPath, 'artifact')} /tmp`
 		await zx.$`cd /tmp/artifact`
 
-		for (const i of await fs.readdir(path.join('/', 'tmp', 'artifact'))) {
-			console.log(i)
-		}
-
 		console.log('[PUBLISHER] Publishing package to npm...')
 		if (input.contract.version.includes('-pr-')) {
 			console.log('[PUBLISHER] This is a pre-release version:', input.contract.version)
