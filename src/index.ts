@@ -27,8 +27,9 @@ const run = async () => {
 	try {
 		const backflowPath = path.join(inputDir, backflow.id)
 		await zx.$`cp -r ${path.join(backflowPath, 'artifact')} /tmp`
+		await zx.$`cd /tmp`
 
-		for (const i of await fs.readdir(path.join('/', 'tmp'))) {
+		for (const i of await fs.readdir(path.join('/', 'tmp', 'artifact'))) {
 			console.log(i)
 		}
 
@@ -38,15 +39,15 @@ const run = async () => {
 		}
 
 		// Change package.json version
-		const pkgJSON = JSON.parse(await fs.readFile(path.join('/', 'tmp', 'package.json'), { encoding: 'utf-8' }))
+		const pkgJSON = JSON.parse(await fs.readFile(path.join('/', 'tmp', 'artifact', 'package.json'), { encoding: 'utf-8' }))
 		pkgJSON.version = input.contract.version
-		await fs.writeFile(path.join('/', 'tmp', 'package.json'), JSON.stringify(pkgJSON, null, 2))
+		await fs.writeFile(path.join('/', 'tmp', 'artifact', 'package.json'), JSON.stringify(pkgJSON, null, 2))
 		console.log('[PUBLISHER] Update package.json version')
 
 		// Change package-lock.json version
-		const pkgLockJSON = JSON.parse(await fs.readFile(path.join('/', 'tmp', 'package-lock.json'), { encoding: 'utf-8' }))
+		const pkgLockJSON = JSON.parse(await fs.readFile(path.join('/', 'tmp', 'artifact', 'package-lock.json'), { encoding: 'utf-8' }))
 		pkgLockJSON.version = input.contract.version
-		await fs.writeFile(path.join('/', 'tmp', 'package-lock.json'), JSON.stringify(pkgLockJSON, null, 2))
+		await fs.writeFile(path.join('/', 'tmp', 'artifact', 'package-lock.json'), JSON.stringify(pkgLockJSON, null, 2))
 		console.log('[PUBLISHER] Update package-lock.json version')
 
 		console.log('[PUBLISHER] Publishing version', input.contract.version)
