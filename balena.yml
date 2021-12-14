@@ -6,14 +6,13 @@ data:
   # things and want maximum performance. (The workers have Qemu and thus can run images for any platform)
   platforms:
     linux/amd64: {}
-  $transformer: {}
+  $transformer:
+    encryptedSecrets:
+      NPM_TOKEN: >-
+        wK4pO96K5MgvvI9+2LUmv2a8oWHgvbpPwUfhVF45cJv8OlfsmrNNmXUaZuUGJVWofqTnPADzZ6ssXlyqlOsoEk7BFR3sDQ1zOoqqmpjrxCY2xRPZy0fwDSo1C4oE+fmQv3/cp2YqZ+eU7Sswasx7AD269G/Y0hjtt6dY2UFkm6FvnhjYavCkHy1YOB8kLd6aHEWtRglZjgqhefWG52yek7Rvftc8ue2znQ2s2Amkefnj5hq3XhvtdKZMRbcCPkm19CUcRb7MHgxT1jEG4p7NBABF5zc1bTDBh6YA0mz/A0aIRuVN5OoWwaCFiihyMtV2Po/GxkEoDD5S6EVuYszUkg==
   fragment:
     type: transformer@1.0.0
     data:
-      encryptedSecrets:
-        buildSecrets:
-          NPM_TOKEN: >-
-            wK4pO96K5MgvvI9+2LUmv2a8oWHgvbpPwUfhVF45cJv8OlfsmrNNmXUaZuUGJVWofqTnPADzZ6ssXlyqlOsoEk7BFR3sDQ1zOoqqmpjrxCY2xRPZy0fwDSo1C4oE+fmQv3/cp2YqZ+eU7Sswasx7AD269G/Y0hjtt6dY2UFkm6FvnhjYavCkHy1YOB8kLd6aHEWtRglZjgqhefWG52yek7Rvftc8ue2znQ2s2Amkefnj5hq3XhvtdKZMRbcCPkm19CUcRb7MHgxT1jEG4p7NBABF5zc1bTDBh6YA0mz/A0aIRuVN5OoWwaCFiihyMtV2Po/GxkEoDD5S6EVuYszUkg==
       targetPlatform: linux/amd64
       # this is a JSON schema (YAML is just a prettier superset of JSON) that describes the shape of contracts your
       # Transformer should run on.
