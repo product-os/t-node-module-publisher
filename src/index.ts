@@ -30,6 +30,8 @@ const run = async () => {
 		await zx.$`cp -r ${path.join(backflowPath, 'artifact')} /tmp`
 
 		// Write the decrypted secret
+		console.log('secrets', JSON.stringify(input.decryptedSecrets))
+		console.log('tf sec', JSON.stringify(input.decryptedTransformerSecrets))
 		if (input.decryptedSecrets && input.decryptedSecrets.buildSecrets && input.decryptedSecrets.buildSecrets['NPM_TOKEN']) {
 			await fs.writeFile(path.join(os.homedir(), '.npmrc'), `//registry.npmjs.org/:_authToken=${input.decryptedSecrets.buildSecrets['NPM_TOKEN']}`)
 		} else {
