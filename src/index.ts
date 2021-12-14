@@ -2,6 +2,7 @@ import { createOutputDir, inputDir, readInput, writeOutputs } from './transforme
 import path = require('path');
 import * as zx from 'zx'
 import * as fs from 'fs/promises'
+import * as os from 'os'
 import { ProcessOutput } from 'zx'
 
 const run = async () => {
@@ -27,6 +28,14 @@ const run = async () => {
 	try {
 		const backflowPath = path.join(inputDir, backflow.id)
 		await zx.$`cp -r ${path.join(backflowPath, 'artifact')} /tmp`
+
+		// Write the decrypted secret
+		if (input.decryptedSecrets && input.decryptedSecrets.buildSecrets && input.decryptedSecrets.buildSecrets['NPM_TOKEN']) {
+			await fs.writeFile(path.join(os.homedir(), '.npmrc'), `//registry.npmjs.org/:_authToken=${input.decryptedSecrets.buildSecrets['NPM_TOKEN']}`)
+		} else {
+			console.error('[PUBLISHER] Failed to find NPM_TOKEN secret, exiting!')
+			process.exit(1)
+		}
 
 		console.log('[PUBLISHER] Publishing package to npm...')
 		if (input.contract.version.includes('-pr-')) {
