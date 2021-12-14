@@ -13,7 +13,6 @@ RUN npm ci
 RUN --mount=type=secret,id=NPM_TOKEN \
 	echo "//registry.npmjs.org/:_authToken=$(cat /run/secrets/NPM_TOKEN)" > ~/.npmrc && \
 	npm ci && \
-	rm -f ~/.npmrc
 
 COPY . ./
 RUN npm run build
