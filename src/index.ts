@@ -30,10 +30,12 @@ const run = async () => {
 		await zx.$`cp -r ${path.join(backflowPath, 'artifact')} /tmp`
 
 		// Write the decrypted secret
-		console.log('secret', JSON.stringify(input.decryptedSecrets))
-		console.log('tf sec', JSON.stringify(input.decryptedTransformerSecrets))
-		if (input.decryptedSecrets && input.decryptedSecrets.buildSecrets && input.decryptedSecrets.buildSecrets['NPM_TOKEN']) {
-			await fs.writeFile(path.join(os.homedir(), '.npmrc'), `//registry.npmjs.org/:_authToken=${input.decryptedSecrets.buildSecrets['NPM_TOKEN']}`)
+		const secrets = {
+			...input.decryptedSecrets?.buildSecrets,
+			...input.decryptedTransformerSecrets?.buildSecrets,
+		};
+		if (secrets['NPM_TOKEN']) {
+			await fs.writeFile(path.join(os.homedir(), '.npmrc'), `//registry.npmjs.org/:_authToken=${secrets['NPM_TOKEN']}`)
 		} else {
 			console.error('[PUBLISHER] Failed to find NPM_TOKEN secret, exiting!')
 			process.exit(1)
