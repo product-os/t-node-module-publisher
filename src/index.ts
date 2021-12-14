@@ -29,7 +29,6 @@ const run = async () => {
 		await zx.$`cp -r ${path.join(backflowPath, 'artifact')} /tmp`
 
 		console.log('[PUBLISHER] Publishing package to npm...')
-		console.log('[PUBLISHER] FAKE NPM TOKEN', process.env.NPM_TOKEN)
 		if (input.contract.version.includes('-pr-')) {
 			console.log('[PUBLISHER] This is a pre-release version:', input.contract.version)
 		}
