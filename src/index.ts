@@ -31,9 +31,9 @@ const run = async () => {
 
 		// Write the decrypted secret
 		const secrets = {
-			...input.decryptedSecrets?.buildSecrets,
-			...input.decryptedTransformerSecrets?.buildSecrets,
-		};
+			...input.decryptedSecrets,
+			...input.decryptedTransformerSecrets,
+		} as any;
 		console.log('secs', JSON.stringify(secrets))
 		if (secrets['NPM_TOKEN']) {
 			await fs.writeFile(path.join(os.homedir(), '.npmrc'), `//registry.npmjs.org/:_authToken=${secrets['NPM_TOKEN']}`)
