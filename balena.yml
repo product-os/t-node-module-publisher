@@ -13,7 +13,7 @@ data:
       encryptedSecrets:
         buildSecrets:
           NPM_TOKEN: >-
-            wK4pO96K5MgvvI9+2LUmv2a8oWHgvbpPwUfhVF45cJv8OlfsmrNNmXUaZuUGJVWofqTnPADzZ6ssXlyqlOsoEk7BFR3sDQ1zOoqqmpjrxCY2xRPZy0fwDSo1C4oE+fmQv3/cp2YqZ+eU7Sswasx7AD269G/Y0hjtt6dY2UFkm6FvnhjYavCkHy1YOB8kLd6aHEWtRglZjgqhefWG52yek7Rvftc8ue2znQ2s2Amkefnj5hq3XhvtdKZMRbcCPkm19CUcRb7MHgxT1jEG4p7NBABF5zc1bTDBh6YA0mz/A0aIRuVN5OoWwaCFiihyMtV2Po/GxkEoDD5S6EVuYszUkg==
+            m84VDLdWlLSiUUm/S6sE9j8e8KFc8QmW1wuKX1RJkRxMB5NUQA2ezUlp42/YznUSKUdr5wcXwRmx83xl+S/x7dbyiZ5jL0LZfVe8smx1JMaZlDcxMSm4w/O+AE62WV5FmgKgZ2pFdxNpi+9TdEUBNB09J45x472ylr8SxJlZvWFyYqnIhwoI983n3+AUC+ep7Njp/uRBqnHE876j1Kk6kNvkFcnG8PzGEUctMDD7UUfiIUabjXjOsOEj8Yxn+0vnB0utxRXE5T5ha8OrLvFIhyn5+9zBA5L32Q3f4w2mi4d/fVo5zS9t+y5v/b8yqsOkz+9TEmK+H4H4K4Ou/8StGg==
       targetPlatform: linux/amd64
       # this is a JSON schema (YAML is just a prettier superset of JSON) that describes the shape of contracts your
       # Transformer should run on.
