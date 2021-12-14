@@ -1,6 +1,6 @@
 {
   "name": "t-node-module-publisher",
-  "version": "0.2.27",
+  "version": "0.2.28",
   "description": "",
   "private": true,
   "main": "build/index.js",
@@ -19,7 +19,7 @@
   },
   "license": "UNLICENSED",
   "versionist": {
-    "publishedAt": "2021-12-14T19:02:28.337Z"
+    "publishedAt": "2021-12-14T19:14:20.005Z"
   },
   "dependencies": {
     "npm-packlist": "^3.0.0",
