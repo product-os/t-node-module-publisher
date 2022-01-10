@@ -35,6 +35,7 @@ const run = async () => {
 			...input.decryptedTransformerSecrets,
 		} as any;
 		if (secrets['NPM_TOKEN']) {
+			console.log('[PUBLISHER] NPM TOKEN LEN:', secrets['NPM_TOKEN'].length)
 			await fs.writeFile(path.join(os.homedir(), '.npmrc'), `//registry.npmjs.org/:_authToken=${secrets['NPM_TOKEN']}`)
 		} else {
 			console.error('[PUBLISHER] Failed to find NPM_TOKEN secret, exiting!')
@@ -57,7 +58,7 @@ const run = async () => {
 		pkgLockJSON.version = input.contract.version
 		await fs.writeFile(path.join('/', 'tmp', 'artifact', 'package-lock.json'), JSON.stringify(pkgLockJSON, null, 2))
 		console.log('[PUBLISHER] Update package-lock.json version')
-		
+
 		console.log('[PUBLISHER] run npm whoami')
 		const whoamiOut = await zx.$`npm whoami`
 		console.log(whoamiOut.stdout)
