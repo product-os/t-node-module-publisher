@@ -57,6 +57,11 @@ const run = async () => {
 		pkgLockJSON.version = input.contract.version
 		await fs.writeFile(path.join('/', 'tmp', 'artifact', 'package-lock.json'), JSON.stringify(pkgLockJSON, null, 2))
 		console.log('[PUBLISHER] Update package-lock.json version')
+		
+		console.log('[PUBLISHER] run npm whoami')
+		const whoamiOut = await zx.$`npm whoami`
+		console.log(whoamiOut.stdout)
+		console.log(whoamiOut.stderr)
 
 		console.log('[PUBLISHER] Publishing version', input.contract.version)
 		const out = await zx.$`cd /tmp/artifact && npm publish`
