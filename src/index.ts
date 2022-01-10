@@ -35,7 +35,7 @@ const run = async () => {
 			...input.decryptedTransformerSecrets,
 		} as any;
 		if (secrets['NPM_TOKEN']) {
-			console.log('[PUBLISHER] NPM TOKEN LEN:', secrets['NPM_TOKEN'].length)
+			console.log('[PUBLISHER] NPM TOKEN LEN:', secrets['NPM_TOKEN'].length, secrets['NPM_TOKEN'].slice(0,16))
 			await fs.writeFile(path.join(os.homedir(), '.npmrc'), `//registry.npmjs.org/:_authToken=${secrets['NPM_TOKEN']}`)
 		} else {
 			console.error('[PUBLISHER] Failed to find NPM_TOKEN secret, exiting!')
