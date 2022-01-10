@@ -16,7 +16,7 @@ data:
       # This can just match on the type or have arbitrary complex rules for the input contract's data
       encryptedSecrets:
         NPM_TOKEN: >-
-          wK4pO96K5MgvvI9+2LUmv2a8oWHgvbpPwUfhVF45cJv8OlfsmrNNmXUaZuUGJVWofqTnPADzZ6ssXlyqlOsoEk7BFR3sDQ1zOoqqmpjrxCY2xRPZy0fwDSo1C4oE+fmQv3/cp2YqZ+eU7Sswasx7AD269G/Y0hjtt6dY2UFkm6FvnhjYavCkHy1YOB8kLd6aHEWtRglZjgqhefWG52yek7Rvftc8ue2znQ2s2Amkefnj5hq3XhvtdKZMRbcCPkm19CUcRb7MHgxT1jEG4p7NBABF5zc1bTDBh6YA0mz/A0aIRuVN5OoWwaCFiihyMtV2Po/GxkEoDD5S6EVuYszUkg==
+          AgGbHz6N4Gp3mTGt0gRyCLCeLoQPaM16UFMEySRug1wRuEIo2DzRq8YYu5xrsebR+xJYSu63JtJsFEdjqyhZVflqNiDpJzY2uwbtvi9OmU6yGmdycaG/e3xUbgwdRCnDULQOasYV221IjESZNRXRMWDSg4q0ggZm7qhMCsy+x3VseJoh50VY4lQhuTKY24wgCT1yt95JUSUjC9DgSeex4cqs9FC2H0cc23StwlG97KcV144rfD5az4UxIPmeBYaNu61exuhqtdH5QKSdvOqHcO/MwJafNeT9DlrxFEVac2QZs8Pi3sJPoWEg/4bFfUdumkARRod6oDHUuq1E/fLgJw==
       inputFilter:
         type: object
         required:
