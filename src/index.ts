@@ -36,7 +36,6 @@ const run = async () => {
 		} as any;
 		const npmSecret = Buffer.from(secrets['NPM_TOKEN'], 'base64').toString('utf-8')
 		if (npmSecret) {
-			console.log('[PUBLISHER] NPM TOKEN LEN:', npmSecret.length, secrets['NPM_TOKEN'].slice(0,16), npmSecret.slice(0,16), Buffer.from(npmSecret, 'base64').toString('utf-8').slice(0,16))
 			await fs.writeFile(path.join(os.homedir(), '.npmrc'), `//registry.npmjs.org/:_authToken=${npmSecret}`)
 		} else {
 			console.error('[PUBLISHER] Failed to find NPM_TOKEN secret, exiting!')
