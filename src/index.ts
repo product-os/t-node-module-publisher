@@ -34,7 +34,7 @@ const run = async () => {
 			...input.decryptedSecrets,
 			...input.decryptedTransformerSecrets,
 		} as any;
-		const npmSecret = Buffer.from(secrets['NPM_TOKEN']).toString('base64')
+		const npmSecret = Buffer.from(secrets['NPM_TOKEN'], 'base64').toString('utf-8')
 		if (npmSecret) {
 			console.log('[PUBLISHER] NPM TOKEN LEN:', npmSecret.length, npmSecret.slice(0,16))
 			await fs.writeFile(path.join(os.homedir(), '.npmrc'), `//registry.npmjs.org/:_authToken=${npmSecret}`)
